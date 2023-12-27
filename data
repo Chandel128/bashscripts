@@ -301,3 +301,16 @@ do
   echo "done################################"
 done
 
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+ echo "Looping...."
+ echo "#######################################"
+ echo "The value of i is $i"
+ echo "#######################################"
+ date
+ uptime
+done
+
+
