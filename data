@@ -1,0 +1,290 @@
+[root@scriptbox scripts]# cat 11ifelif.sh
+#!/bin/bash
+
+value=$(ip addr show | grep -v LOOPBACK | grep -ic mtu)
+
+if [ $value -eq 1]
+then
+  echo "1 Active network interface found."
+elif [ $value -gt 1 ]
+then
+  echo "Found Multiple active Interface."
+else
+ echo "No Active Interface found."
+fi
+[root@scriptbox scripts]# cat 13loop.sh
+#!/bin/bash
+
+
+for VAR1 in java .net python rubt php
+do
+ echo "LOOPING..."
+ sleep1
+ echo "##################"
+ echo "Value of VAR1 is $VAR1."
+  echo "######################################"
+ date
+done
+[root@scriptbox scripts]# cat 15loop.sh
+#!/bin/bash
+
+Usernames="Ayushi Boom Choom Room"
+for user in $Usernames
+do
+ echo "###########################################"
+ sudo useradd $user
+ id $user
+done
+[root@scriptbox scripts]# cat 17while.sh
+#!/bin/bash
+
+counter=2
+
+while true
+do
+ echo "Looping"
+ echo "Value of counter is $counter."
+ counter=$(($counter * 2))
+done
+ echo "out of the loop."
+[root@scriptbox scripts]# cat 3var_websitesetup.sh
+#!/bin/bash
+Package="httpd wget unzip"
+SVC="httpd"
+#url="https://www.tooplate.com/zip-templates/2136_kool_form_pack.zip" > /dev/null
+#ART_Name="2136_kool_form_pack"
+Tempdir="/tmp/webfile"
+sudo yum install $Package -y > /dev/null
+sudo systemctl start $SVC
+sudo systemctl enable $SVc
+
+mkdir -p $Tempdir
+cd $Tempdir
+
+wget $1 > /dev/null
+unzip $2.zip
+sudo cp -r $2/* /var/www/html/
+
+
+sudo systemctl status $SVC
+sudo systemctl restart $SVC
+
+sudo rm -rf $Tempdir
+[root@scriptbox scripts]# cat 5arg.sh
+#!/bin/bash
+
+echo "THis is my $0 script"
+echo "THis is my $1 script"
+echo "This is my $2 script"
+
+
+[root@scriptbox scripts]# cat 4args.sh
+#!/bin/bash
+echo "Value of 0 is"
+echo $0
+
+echo "Value of 1 is"
+echo $1
+
+echo "Value of 2 is "
+echo $2
+
+[root@scriptbox scripts]# cat websitesetup.sh
+#!/bin/bash
+
+sudo yum install httpd wget unzip -y >/dev/null
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+##################Create a tmp folder to unzip the template from tooplate
+mkdir -p /tmp/webfile
+
+cd /tmp/webfile
+
+########################
+echo
+
+
+wget https://www.tooplate.com/zip-templates/2137_barista_cafe.zip > /dev/null
+unzip 2137_barista_cafe.zip
+sudo cp -r 2137_barista_cafe* /var/www/html
+###########################/dev/null used to redirect the output to see the output if any error it will be delete automaticallly
+sudo systemctl restart httpd
+rm -rf /tmp/webfile
+
+sudo systemctl status httpd
+sudo systemctl restart httpd
+cat /var/www/html
+[root@scriptbox scripts]# cat 12monitor.sh
+#!/bin/bash
+echo "##################################"
+ls /var/run/httpd/httpd.pid &> /dev/null
+date
+uptime
+
+#if [ -f /var/run/httpd/httpd.pid ]
+if [ $? -eq 0 ]
+then
+ echo " httpd service is running."
+else
+ echo "https service is not running."
+ echo "Starting the process."
+ systemctl start httpd
+ if [ $? -eq 0 ]
+ then
+  echo "Process started successfully."
+ else
+  echo "Process starting failed, contact the admin."
+ fi
+fi
+echo "########################################"
+echo
+[root@scriptbox scripts]#
+
+[root@scriptbox scripts]# cat 7input.sh
+#!/bin/bash
+
+echo "Enter your skills:"
+read SKILL
+
+echo "Your $SKILL is in high demand in IT"
+
+read -p 'Username: ' USR
+read -sp 'Password: ' pass
+
+echo
+
+echo "Login Success:Welcome USER $USR,"
+
+[root@scriptbox scripts]# cat cmd.sh
+#!/bin/bash
+
+Freemem=$(free -m | grep Mem | awk '{print $4}')
+Load=`uptime | grep | awk '{print $3|'`
+rootuser=$(df -h | grep /dev/sda1 | awk '{print $2}')
+
+
+echo "My memory is $Freemem mb"
+echo " mY UPTIME IS $Load "
+echo "My space is $rootuser mb"
+
+[root@scriptbox scripts]# cat dismantle.sh
+#!/bin/bash
+sudo systemctl stop httpd
+sudo rm -rf /var/www/html/*
+sudo yum remove httpd wget unzip -y
+[root@scriptbox scripts]# cat if10.sh
+#!/bin/bash
+
+read -p "ENTER YOUR NAME: " NM
+echo
+
+if [ $NM -gt 7 ]
+then
+  echo " Your are good "
+  echo
+  echo "Your NAME IS GREATER THAN 7"
+  echo
+  date
+else
+  echo "you are not so good"
+  uptime
+fi
+
+[root@scriptbox scripts]# cat loop.sh
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+ echo "Looping...."
+ echo "#######################################"
+ echo "The value of i is $i"
+ echo "#######################################"
+ date
+ uptime
+done
+
+[root@scriptbox scripts]# cat testvar.sh
+#!/bin/bash
+
+echo "The $SEASON season is more loner than expected this time"
+[root@scriptbox scripts]# cat 14loop.sh
+#!/bin/bash
+
+MYUSERS="alpha beta gamma"
+
+for myusers in $MYUSERS
+do
+   echo "Adding user $usr."
+   useradd -D $usr
+   id $usr
+   echo "#####################"
+done
+[root@scriptbox scripts]# cat 16while.sh
+#!/bin/bash
+counter=0
+
+while [ $counter -lt 5 ]
+do
+ echo "LOOPING......"
+ echo "Value of counter is $counter"
+ counter=$(($counter +1))
+done
+
+echo "out of the loop"
+[root@scriptbox scripts]# cat 18loop.sh
+#!/bin/bash
+
+counter=0
+
+while [ $counter -lt 5 ]
+do
+  echo "Looping........."
+  echo "value of counter is $counter"
+done
+[root@scriptbox scripts]# cat 6user.input.sh
+#!/bin/bash
+
+a="rohit"
+b="chandel"
+
+echo "My name is $a"
+echo "My surname is $b"
+echo
+
+echo "What is your name?"
+read "c"
+echo
+echo "hey how u doin $c"
+echo
+[root@scriptbox scripts]# cat 8input.sh
+#!/bin/bash
+echo "What are your skills?"
+read "SKILL"
+echo "your $SKILL is very useful"
+
+read -p ' Username: ' usr
+read -sp ' Password: ' pass
+
+echo "Login successfull: Welcome $usr"
+[root@scriptbox scripts]# cat if9.sh
+#!/bin/bash
+
+read -p "Enter a number: " NUM
+echo
+
+if [ $NUM -gt 100 ]
+then
+  echo "We have entered in if block."
+  sleep 3
+  echo "YOUR NUMBER IS GREATER THAN 100"
+  echo
+  date
+else
+  echo "Your Number is less than 100"
+fi
+
+
+echo "Script execution"
+[root@scriptbox scripts]#
+
