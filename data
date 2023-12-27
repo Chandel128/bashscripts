@@ -288,3 +288,16 @@ fi
 echo "Script execution"
 [root@scriptbox scripts]#
 
+
+[root@scriptbox scripts]# cat webscp.sh
+#!/bin/bash
+
+for hosts in cat `remhosts`
+do
+  echo "Executing script on $hosts"
+  echo "###################################"
+  scp websitesetup.sh devops@192.168.10.14:/tmp/boom
+  echo "Executing script on 192.168.10.14."
+  echo "done################################"
+done
+
